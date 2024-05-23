@@ -5,14 +5,14 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          docker.build('prueba')
+          docker.build('my-app', './prueba') // Cambio en la carpeta de construcción
         }
       }
     }
     stage('Test') {
       steps {
         script {
-          docker.image('prueba').inside {
+          docker.image('my-app').inside {
             sh 'npm test'
           }
         }
@@ -21,9 +21,10 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          docker.image('prueba').run('-p 3000:3000')
+          docker.image('my-app').run('-p 3000:3000')
         }
       }
     }
   }
 }
+
