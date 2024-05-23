@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          docker.build('prueba')
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        script {
+          docker.image('prueba').inside {
+            sh 'npm test'
+          }
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        script {
+          docker.image('prueba').run('-p 3000:3000')
+        }
+      }
+    }
+  }
+}
