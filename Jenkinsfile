@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-            docker.build('my-app', './docker') // Cambia la ruta al directorio "docker"
+            docker.build('my-app', '.') // Cambia la ruta al directorio "docker"
         }
       }
     }
