@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          docker.build('my-app', '.') // Construir la imagen desde la raíz del proyecto
+            docker.build('my-app', './docker') // Cambia la ruta al directorio "docker"
         }
       }
     }
