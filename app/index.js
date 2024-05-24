@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
         <body>
             <h1>Button Page</h1>
             <form action="/action" method="post">
-                <button type="submit">Click Me!</button>
+                <button type="submit">Click Me pls!</button>
             </form>
         </body>
         </html>
