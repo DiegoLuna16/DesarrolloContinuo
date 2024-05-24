@@ -12,8 +12,9 @@ pipeline {
     stage('Test') {
       steps {
         script {
-          sh 'cd app && npm install' // Instalar dependencias antes de ejecutar pruebas
-          sh 'cd app && npm test'
+            sh 'cd /d app && npm install' // Instalar dependencias antes de ejecutar pruebas
+            sh 'cd /d app && npm test' // Ejecutar pruebas
+
         }
       }
     }
