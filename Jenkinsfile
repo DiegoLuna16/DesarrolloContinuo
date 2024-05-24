@@ -1,30 +1,32 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('Build') {
-      steps {
-        script {
-            docker.build('my-app', '.') // Cambia la ruta al directorio "docker"
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    docker.build('my-app', '.') // Cambia la ruta al directorio "docker"
+                }
+            }
         }
-      }
-    }
-    stage('Test') {
-      steps {
-        script {
-            sh 'cd /d app && npm install' // Instalar dependencias antes de ejecutar pruebas
-            sh 'cd /d app && npm test' // Ejecutar pruebas
-
+        stage('Test') {
+            steps {
+                script {
+                    // Cambiar al directorio de la aplicación y ejecutar npm install
+                    bat 'cd /d app && npm install'
+                    // Ejecutar pruebas
+                    bat 'cd /d app && npm test'
+                }
+            }
         }
-      }
-    }
-    stage('Deploy') {
-      steps {
-        script {
-          docker.image('my-app').run('-p 3000:3000') // Ejecutar el contenedor Docker
+        stage('Deploy') {
+            steps {
+                script {
+                    docker.image('my-app').run('-p 3000:3000') // Ejecutar el contenedor Docker
+                }
+            }
         }
-      }
     }
-  }
 }
+
 
